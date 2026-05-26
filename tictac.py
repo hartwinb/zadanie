@@ -12,18 +12,11 @@ def pokazat_pole():
     print()
 
 
-def proverit_pobedu(simvol):
+def proverit_pobedu(s):
     for i in range(4):
-        if pole[i][0] == simvol and pole[i][1] == simvol and pole[i][2] == simvol and pole[i][3] == simvol:
+        if all(pole[i][j]==s for j in range(4)) or all(pole[j][i]==s for j in range(4)):
             return True
-    for j in range(4):
-        if pole[0][j] == simvol and pole[1][j] == simvol and pole[2][j] == simvol and pole[3][j] == simvol:
-            return True
-    if pole[0][0] == simvol and pole[1][1] == simvol and pole[2][2] == simvol and pole[3][3] == simvol:
-        return True
-    if pole[0][3] == simvol and pole[1][2] == simvol and pole[2][1] == simvol and pole[3][0] == simvol:
-        return True
-    return False
+    return all(pole[i][i]==s for i in range(4)) or all(pole[i][3-i]==s for i in range(4))
 
 
 def proverit_nichyu():
