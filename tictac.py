@@ -1,12 +1,5 @@
-pole = [
-    [' ', ' ', ' ', ' '],
-    [' ', ' ', ' ', ' '],
-    [' ', ' ', ' ', ' '],
-    [' ', ' ', ' ', ' ']
-]
-
-schet_x = 0
-schet_o = 0
+pole = [[' ' for _ in range(4)] for _ in range(4)]
+schet_x, schet_o = 0, 0
 
 tekushiy_igrok = 0
 
@@ -18,7 +11,6 @@ def pokazat_pole():
         print("  +---+---+---+---+")
     print()
 
-#если читаешь это ты классный
 
 def proverit_pobedu(simvol):
     for i in range(4):
@@ -47,40 +39,35 @@ def ochistit_pole():
         for j in range(4):
             pole[i][j] = ' '
 
-print("=" * 50)
-print("КРЕСТИКИ-НОЛИКИ 4x4")
-print("=" * 50)
-print("Правила: нужно собрать 4 одинаковых символа в строку, столбец или диагональ")
-print("Координаты: строка и столбец от 1 до 4")
-print("Пример: 2 3")
-print("=" * 50)
+#сделать в виде одного принта
+print("=" * 50 +
+"\nКРЕСТИКИ-НОЛИКИ 4x4\n"+
+"=" * 50 +
+"\nПравила: нужно собрать 4 одинаковых символа в строку, столбец или диагональ"+
+"\nКоординаты: строка и столбец от 1 до 4"+
+"\nПример: 2 3\n"+
+"=" * 50)
 
+#сделать меньше
 while True:
     ochistit_pole()
     tekushiy_igrok = 0
     igra_aktivna = True
+
     while igra_aktivna:
         pokazat_pole()
-        if tekushiy_igrok == 0:
-            simvol = 'X'
-            print("Ход игрока X")
-        else:
-            simvol = 'O'
-            print("Ход игрока O")
+        simvol = 'X' if tekushiy_igrok == 0 else 'O'
+        print(f"Ход игрока {simvol}")
+
         while True:
             try:
-                stroka = int(input("Введите номер строки (1-4): "))
-                stolbec = int(input("Введите номер столбца (1-4): "))
-                if stroka < 1 or stroka > 4 or stolbec < 1 or stolbec > 4:
-                    print("Ошибка! Числа должны быть от 1 до 4")
-                    continue
-                if pole[stroka - 1][stolbec - 1] != ' ':
-                    print("Ошибка! Эта клетка уже занята")
-                    continue
-                pole[stroka - 1][stolbec - 1] = simvol
-                break
-            except ValueError:
-                print("Ошибка! Введите целые числа")
+                stroka, stolbec = map(int, input("Строка и столбец: ").split())
+                if 1 <= stroka <= 4 and 1 <= stolbec <= 4 and pole[stroka - 1][stolbec - 1] == ' ':
+                    pole[stroka - 1][stolbec - 1] = simvol
+                    break
+            except:
+                pass
+
         if proverit_pobedu(simvol):
             pokazat_pole()
             print(f"\nПОБЕДИЛ ИГРОК {simvol}!")
@@ -88,21 +75,15 @@ while True:
                 schet_x += 1
             else:
                 schet_o += 1
-
-            print(f"Счёт: X - {schet_x} : {schet_o} - O")
+            print(f"Счёт: X-{schet_x} : {schet_o}-O")
             igra_aktivna = False
-
         elif proverit_nichyu():
             pokazat_pole()
             print("\nНИЧЬЯ!")
-            print(f"Счёт: X - {schet_x} : {schet_o} - O")
+            print(f"Счёт: X-{schet_x} : {schet_o}-O")
             igra_aktivna = False
-
         else:
-            if tekushiy_igrok == 0:
-                tekushiy_igrok = 1
-            else:
-                tekushiy_igrok = 0
+            tekushiy_igrok = 1 - tekushiy_igrok
 
     while True:
         otvet = input("\nХотите сыграть ещё? (да/нет): ").strip().lower()
