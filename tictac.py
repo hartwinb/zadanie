@@ -38,6 +38,18 @@ def telo():
         except:
             pass
 
+def will():
+    while True:
+        otvet = input("\nХотите сыграть ещё? (да/нет): ")
+        if otvet == "да":
+            print("\nНовая игра!")
+            break
+        elif otvet == "нет":
+            print("\nСпасибо за игру!")
+            exit()
+        else:
+            print("Введите 'да' или 'нет'")
+
 #сделать в виде одного принта
 print("=" * 50 +
 "\nКРЕСТИКИ-НОЛИКИ 4x4\n"+
@@ -77,13 +89,4 @@ while True:
         else:
             tekushiy_igrok = 1 - tekushiy_igrok
 
-    while True:
-        otvet = input("\nХотите сыграть ещё? (да/нет): ")
-        if otvet == "да":
-            print("\nНовая игра!")
-            break
-        elif otvet == "нет":
-            print("\nСпасибо за игру!")
-            exit()
-        else:
-            print("Введите 'да' или 'нет'")
+    will()
