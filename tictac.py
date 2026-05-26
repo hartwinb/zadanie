@@ -18,6 +18,7 @@ def pokazat_pole():
         print("  +---+---+---+---+")
     print()
 
+#если читаешь это ты классный
 
 def proverit_pobedu(simvol):
     for i in range(4):
