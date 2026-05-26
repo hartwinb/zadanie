@@ -1,6 +1,5 @@
 pole = [[' ' for _ in range(4)] for _ in range(4)]
 schet_x, schet_o = 0, 0
-
 tekushiy_igrok = 0
 
 def pokazat_pole():
@@ -11,13 +10,11 @@ def pokazat_pole():
         print("  +---+---+---+---+")
     print()
 
-
 def proverit_pobedu(s):
     for i in range(4):
         if all(pole[i][j]==s for j in range(4)) or all(pole[j][i]==s for j in range(4)):
             return True
     return all(pole[i][i]==s for i in range(4)) or all(pole[i][3-i]==s for i in range(4))
-
 
 def proverit_nichyu():
     for i in range(4):
@@ -25,7 +22,6 @@ def proverit_nichyu():
             if pole[i][j] == ' ':
                 return False
     return True
-
 
 def ochistit_pole():
     for i in range(4):
@@ -79,11 +75,11 @@ while True:
             tekushiy_igrok = 1 - tekushiy_igrok
 
     while True:
-        otvet = input("\nХотите сыграть ещё? (да/нет): ").strip().lower()
-        if otvet == "да" or otvet == "yes" or otvet == "д":
+        otvet = input("\nХотите сыграть ещё? (да/нет): ")
+        if otvet == "да":
             print("\nНовая игра!")
             break
-        elif otvet == "нет" or otvet == "no" or otvet == "н":
+        elif otvet == "нет":
             print("\nСпасибо за игру!")
             exit()
         else:
