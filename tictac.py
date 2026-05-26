@@ -28,6 +28,16 @@ def ochistit_pole():
         for j in range(4):
             pole[i][j] = ' '
 
+def telo():
+    while True:
+        try:
+            stroka, stolbec = map(int, input("Строка и столбец: ").split())
+            if 1 <= stroka <= 4 and 1 <= stolbec <= 4 and pole[stroka - 1][stolbec - 1] == ' ':
+                pole[stroka - 1][stolbec - 1] = simvol
+                break
+        except:
+            pass
+
 #сделать в виде одного принта
 print("=" * 50 +
 "\nКРЕСТИКИ-НОЛИКИ 4x4\n"+
@@ -48,14 +58,7 @@ while True:
         simvol = 'X' if tekushiy_igrok == 0 else 'O'
         print(f"Ход игрока {simvol}")
 
-        while True:
-            try:
-                stroka, stolbec = map(int, input("Строка и столбец: ").split())
-                if 1 <= stroka <= 4 and 1 <= stolbec <= 4 and pole[stroka - 1][stolbec - 1] == ' ':
-                    pole[stroka - 1][stolbec - 1] = simvol
-                    break
-            except:
-                pass
+        telo()
 
         if proverit_pobedu(simvol):
             pokazat_pole()
