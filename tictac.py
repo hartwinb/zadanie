@@ -2,6 +2,7 @@ pole = [[' ' for _ in range(4)] for _ in range(4)]
 schet_x, schet_o = 0, 0
 tekushiy_igrok = 0
 
+
 def pokazat_pole():
     print("\n    1   2   3   4")
     print("  +---+---+---+---+")
@@ -10,11 +11,13 @@ def pokazat_pole():
         print("  +---+---+---+---+")
     print()
 
+
 def proverit_pobedu(s):
     for i in range(4):
-        if all(pole[i][j]==s for j in range(4)) or all(pole[j][i]==s for j in range(4)):
+        if all(pole[i][j] == s for j in range(4)) or all(pole[j][i] == s for j in range(4)):
             return True
-    return all(pole[i][i]==s for i in range(4)) or all(pole[i][3-i]==s for i in range(4))
+    return all(pole[i][i] == s for i in range(4)) or all(pole[i][3 - i] == s for i in range(4))
+
 
 def proverit_nichyu():
     for i in range(4):
@@ -23,12 +26,15 @@ def proverit_nichyu():
                 return False
     return True
 
+
 def ochistit_pole():
     for i in range(4):
         for j in range(4):
             pole[i][j] = ' '
 
+
 def telo():
+    global simvol
     while True:
         try:
             stroka, stolbec = map(int, input("Строка и столбец: ").split())
@@ -38,29 +44,22 @@ def telo():
         except:
             pass
 
+
 def will():
     while True:
         otvet = input("\nХотите сыграть ещё? (да/нет): ")
         if otvet == "да":
             print("\nНовая игра!")
-            break
+            return True
         elif otvet == "нет":
             print("\nСпасибо за игру!")
-            exit()
+            return False
         else:
             print("Введите 'да' или 'нет'")
 
-#сделать в виде одного принта
-print("=" * 50 +
-"\nКРЕСТИКИ-НОЛИКИ 4x4\n"+
-"=" * 50 +
-"\nПравила: нужно собрать 4 одинаковых символа в строку, столбец или диагональ"+
-"\nКоординаты: строка и столбец от 1 до 4"+
-"\nПример: 2 3\n"+
-"=" * 50)
 
-#сделать меньше
-while True:
+def odin_round():
+    global tekushiy_igrok, schet_x, schet_o, simvol
     ochistit_pole()
     tekushiy_igrok = 0
     igra_aktivna = True
@@ -89,4 +88,16 @@ while True:
         else:
             tekushiy_igrok = 1 - tekushiy_igrok
 
-    will()
+    return will()
+
+#сделать в виде одного принта
+print("=" * 50 +
+"\nКРЕСТИКИ-НОЛИКИ 4x4\n"+
+"=" * 50 +
+"\nПравила: нужно собрать 4 одинаковых символа в строку, столбец или диагональ"+
+"\nКоординаты: строка и столбец от 1 до 4"+
+"\nПример: 2 3\n"+
+"=" * 50)
+
+while odin_round():
+    pass
