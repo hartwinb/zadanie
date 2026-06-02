@@ -101,3 +101,5 @@ print("=" * 50 +
 
 while odin_round():
     pass
+
+#check
